@@ -1,4 +1,4 @@
-// Simple contact form handler - no EmailJS required
+// Automatic email sending with Formspree - no setup required
 
 // Popup functionality
 function openPopup() {
@@ -26,21 +26,21 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission handling with mailto fallback
+// Form submission handling with Formspree
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Get form data
     const formData = {
-        clientName: document.getElementById('clientName').value,
+        name: document.getElementById('clientName').value,
         email: document.getElementById('email').value,
-        contactNumber: document.getElementById('contactNumber').value,
-        contactReason: document.getElementById('contactReason').value,
+        phone: document.getElementById('contactNumber').value,
+        reason: document.getElementById('contactReason').value,
         message: document.getElementById('message').value
     };
     
     // Basic validation
-    if (!formData.clientName || !formData.email || !formData.contactNumber) {
+    if (!formData.name || !formData.email || !formData.phone) {
         alert('Please fill in all required fields.');
         return;
     }
@@ -52,21 +52,39 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Create mailto link
-    const subject = encodeURIComponent(`Contact Form - ${formData.clientName} - V-Infotec`);
-    const body = encodeURIComponent(`Name: ${formData.clientName}\nEmail: ${formData.email}\nPhone: ${formData.contactNumber}\nReason: ${formData.contactReason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
     
-    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Show success message
-    alert('Your email client will open. Please send the email to complete your inquiry.');
-    
-    // Reset form and close popup
-    document.getElementById('contactForm').reset();
-    closePopup();
+    // Send form data to Formspree
+    fetch('https://formspree.io/f/xdkogkqw', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Success
+            alert('✅ Details sent successfully! Our team will connect with you soon.');
+            document.getElementById('contactForm').reset();
+            closePopup();
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Mail not sent. Please try again or contact us directly at vishwakarmakashyap@gmail.com');
+    })
+    .finally(() => {
+        // Reset button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 });
 
 // Smooth scrolling for navigation links
