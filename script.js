@@ -1,4 +1,4 @@
-// Automatic email sending with Formspree - no setup required
+// Node.js backend for automatic email sending
 
 // Popup functionality
 function openPopup() {
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission handling with Formspree
+// Form submission handling with Node.js backend
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -58,22 +58,23 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Send form data to Formspree
-    fetch('https://formspree.io/f/xdkogkqw', {
+    // Send to Node.js backend (change URL to your deployed backend)
+    fetch('http://localhost:3000/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
     })
-    .then(response => {
-        if (response.ok) {
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
             // Success
             alert('✅ Details sent successfully! Our team will connect with you soon.');
             document.getElementById('contactForm').reset();
             closePopup();
         } else {
-            throw new Error('Network response was not ok');
+            throw new Error(data.message);
         }
     })
     .catch(error => {
