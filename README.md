@@ -65,7 +65,7 @@ v-infotec-website/
 ## 📞 Contact Information
 
 - **Company**: V-Infotec Pvt Ltd
-- **Email**: info@vinfotec.com
+- **Email**: vishwakarmakashyap@gmail.com
 - **Phone**: +91 9876543210
 - **Location**: Satna, India
 
