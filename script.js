@@ -55,37 +55,25 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // Show loading state
     const submitBtn = document.querySelector('.btn-submit');
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
+    submitBtn.textContent = 'Opening Email...';
     submitBtn.disabled = true;
     
-    // Send to Node.js backend (change URL to your deployed backend)
-    fetch('https://vishwakarmakashyap.github.io/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Success
-            alert('✅ Details sent successfully! Our team will connect with you soon.');
-            document.getElementById('contactForm').reset();
-            closePopup();
-        } else {
-            throw new Error(data.message);
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Mail not sent. Please try again or contact us directly at vishwakarmakashyap@gmail.com');
-    })
-    .finally(() => {
-        // Reset button state
+    // Reset button after delay
+    setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    });
+    }, 2000);
+    
+    // Simple mailto solution for GitHub Pages
+    const subject = encodeURIComponent(`Contact Form - ${formData.name} - V-Infotec`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
+    
+    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = mailtoLink;
+    
+    alert('✅ Your email client will open. Please send the email to complete your inquiry.');
+    document.getElementById('contactForm').reset();
+    closePopup();
 });
 
 // Smooth scrolling for navigation links
