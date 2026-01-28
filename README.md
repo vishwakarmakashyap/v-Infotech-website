@@ -12,7 +12,7 @@ A modern, responsive website for V-Infotec Pvt Ltd, a software development and t
 
 ## 🚀 Live Demo
 
-Visit the live website: [V-Infotec Pvt Ltd](https://yourusername.github.io/v-infotec-website)
+Visit the live website: [V-Infotec Pvt Ltd](https://vishwakarmakashyap.github.io/v-infotec-website)
 
 ## 📋 Services Offered
 
@@ -45,7 +45,7 @@ v-infotec-website/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/v-infotec-website.git
+   git clone https://github.com/vishwakarmakashyap/v-infotec-website.git
    ```
 
 2. Navigate to the project directory:
