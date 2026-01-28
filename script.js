@@ -1,6 +1,6 @@
 // Initialize EmailJS
 (function() {
-    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+    emailjs.init("iVqDGKdJOhOXhJhYF"); // Public key for demo - replace with your own
 })();
 
 // Popup functionality
@@ -69,7 +69,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     
     // Send email using EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+    emailjs.send('service_vinfotec', 'template_contact', {
         to_email: 'vishwakarmakashyap@gmail.com',
         from_name: formData.clientName,
         from_email: formData.email,
