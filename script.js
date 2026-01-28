@@ -1,7 +1,4 @@
-// Initialize EmailJS
-(function() {
-    emailjs.init("iVqDGKdJOhOXhJhYF"); // Public key for demo - replace with your own
-})();
+// Simple contact form handler - no EmailJS required
 
 // Popup functionality
 function openPopup() {
@@ -29,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission handling
+// Form submission handling with mailto fallback
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -55,46 +52,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Phone validation (basic)
-    const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-    if (!phoneRegex.test(formData.contactNumber.replace(/\s/g, ''))) {
-        alert('Please enter a valid contact number.');
-        return;
-    }
+    // Create mailto link
+    const subject = encodeURIComponent(`Contact Form - ${formData.clientName} - V-Infotec`);
+    const body = encodeURIComponent(`Name: ${formData.clientName}\nEmail: ${formData.email}\nPhone: ${formData.contactNumber}\nReason: ${formData.contactReason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
     
-    // Show loading state
-    const submitBtn = document.querySelector('.btn-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
-    submitBtn.disabled = true;
+    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
     
-    // Send email using EmailJS
-    emailjs.send('service_vinfotec', 'template_contact', {
-        to_email: 'vishwakarmakashyap@gmail.com',
-        from_name: formData.clientName,
-        from_email: formData.email,
-        phone: formData.contactNumber,
-        reason: formData.contactReason || 'Not specified',
-        message: formData.message || 'No message provided',
-        reply_to: formData.email
-    })
-    .then(function(response) {
-        console.log('Email sent successfully:', response);
-        alert('Thank you for contacting us! We will get back to you soon.');
-        
-        // Reset form and close popup
-        document.getElementById('contactForm').reset();
-        closePopup();
-    })
-    .catch(function(error) {
-        console.error('Email sending failed:', error);
-        alert('Sorry, there was an error sending your message. Please try again or contact us directly at vishwakarmakashyap@gmail.com');
-    })
-    .finally(function() {
-        // Reset button state
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    });
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    alert('Your email client will open. Please send the email to complete your inquiry.');
+    
+    // Reset form and close popup
+    document.getElementById('contactForm').reset();
+    closePopup();
 });
 
 // Smooth scrolling for navigation links
