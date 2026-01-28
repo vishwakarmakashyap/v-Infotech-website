@@ -1,3 +1,8 @@
+// Initialize EmailJS
+(function() {
+    emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+})();
+
 // Popup functionality
 function openPopup() {
     document.getElementById('contactModal').style.display = 'block';
@@ -57,18 +62,39 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Simulate form submission
-    console.log('Form submitted:', formData);
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
     
-    // Show success message
-    alert('Thank you for contacting us! We will get back to you soon.');
-    
-    // Reset form and close popup
-    document.getElementById('contactForm').reset();
-    closePopup();
-    
-    // In a real application, you would send this data to your server
-    // Example: fetch('/submit-contact', { method: 'POST', body: JSON.stringify(formData) })
+    // Send email using EmailJS
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+        to_email: 'vishwakarmakashyap@gmail.com',
+        from_name: formData.clientName,
+        from_email: formData.email,
+        phone: formData.contactNumber,
+        reason: formData.contactReason || 'Not specified',
+        message: formData.message || 'No message provided',
+        reply_to: formData.email
+    })
+    .then(function(response) {
+        console.log('Email sent successfully:', response);
+        alert('Thank you for contacting us! We will get back to you soon.');
+        
+        // Reset form and close popup
+        document.getElementById('contactForm').reset();
+        closePopup();
+    })
+    .catch(function(error) {
+        console.error('Email sending failed:', error);
+        alert('Sorry, there was an error sending your message. Please try again or contact us directly at vishwakarmakashyap@gmail.com');
+    })
+    .finally(function() {
+        // Reset button state
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 });
 
 // Smooth scrolling for navigation links
