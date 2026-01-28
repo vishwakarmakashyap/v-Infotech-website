@@ -59,7 +59,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     
     // Send to Node.js backend (change URL to your deployed backend)
-    fetch('http://localhost:3000/contact', {
+    fetch('https://vishwakarmakashyap.github.io/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
