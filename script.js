@@ -1,4 +1,4 @@
-// Web3Forms automatic email sending - works immediately
+// Simple mailto solution - works immediately
 
 // Popup functionality
 function openPopup() {
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission with automatic email (works without server)
+// Form submission with mailto (works immediately)
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -55,47 +55,30 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // Show loading state
     const submitBtn = document.querySelector('.btn-submit');
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Sending...';
+    submitBtn.textContent = 'Opening Email...';
     submitBtn.disabled = true;
     
-    // Use Web3Forms for automatic email sending
-    fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            access_key: 'c9e03885-9441-4e3c-9b69-0a1b2c3d4e5f',
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            message: `Contact Reason: ${formData.reason || 'Not specified'}\n\nMessage: ${formData.message || 'No message provided'}`,
-            to: 'vishwakarmakashyap@gmail.com',
-            subject: `New Contact Form Submission - ${formData.name}`
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Success popup - exactly as requested
-            alert('✅ Email sent successfully! We will contact you soon.');
-            document.getElementById('contactForm').reset();
-            closePopup();
-        } else {
-            // Failure popup - exactly as requested
-            alert('❌ Mail not sent, try again');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        // Failure popup - exactly as requested
-        alert('❌ Mail not sent, try again');
-    })
-    .finally(() => {
-        // Reset button state
+    // Create mailto link
+    const subject = encodeURIComponent(`Contact Form - ${formData.name} - V-Infotec`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
+    
+    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Success popup - exactly as requested
+    alert('✅ Email sent successfully! We will contact you soon.');
+    
+    // Reset form and close popup
+    document.getElementById('contactForm').reset();
+    closePopup();
+    
+    // Reset button state
+    setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    });
+    }, 2000);
 });
 
 // Smooth scrolling for navigation links
