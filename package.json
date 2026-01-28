@@ -1,16 +1,17 @@
 {
-  "name": "v-infotec-email-server",
+  "name": "v-infotec-smtp-server",
   "version": "1.0.0",
-  "description": "Email server for V-Infotec contact form",
-  "main": "email-server.js",
+  "description": "SMTP Email server for V-Infotec contact form using Nodemailer",
+  "main": "smtp-server.js",
   "scripts": {
-    "start": "node email-server.js",
-    "dev": "nodemon email-server.js"
+    "start": "node smtp-server.js",
+    "dev": "nodemon smtp-server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "nodemailer": "^6.9.7",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

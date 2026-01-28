@@ -1,4 +1,4 @@
-// Simple mailto solution - works immediately
+// SMTP Nodemailer automatic email sending
 
 // Popup functionality
 function openPopup() {
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission with mailto (works immediately)
+// Form submission with SMTP Nodemailer
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -55,30 +55,39 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // Show loading state
     const submitBtn = document.querySelector('.btn-submit');
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Opening Email...';
+    submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Create mailto link
-    const subject = encodeURIComponent(`Contact Form - ${formData.name} - V-Infotec`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
-    
-    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Success popup - exactly as requested
-    alert('✅ Email sent successfully! We will contact you soon.');
-    
-    // Reset form and close popup
-    document.getElementById('contactForm').reset();
-    closePopup();
-    
-    // Reset button state
-    setTimeout(() => {
+    // Send to SMTP server
+    fetch('http://localhost:3000/send-contact-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Success popup - exactly as requested
+            alert('✅ Email sent successfully! We will contact you soon.');
+            document.getElementById('contactForm').reset();
+            closePopup();
+        } else {
+            // Failure popup - exactly as requested
+            alert('❌ Mail not sent, try again');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Failure popup - exactly as requested
+        alert('❌ Mail not sent, try again');
+    })
+    .finally(() => {
+        // Reset button state
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 2000);
+    });
 });
 
 // Smooth scrolling for navigation links
