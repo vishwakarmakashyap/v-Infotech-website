@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission handling with Node.js backend
+// Form submission with Node.js automatic email sending
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -55,25 +55,39 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // Show loading state
     const submitBtn = document.querySelector('.btn-submit');
     const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Opening Email...';
+    submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Reset button after delay
-    setTimeout(() => {
+    // Send to Node.js backend
+    fetch('http://localhost:3000/send-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Success popup - exactly as requested
+            alert('✅ Email sent successfully! We will contact you soon.');
+            document.getElementById('contactForm').reset();
+            closePopup();
+        } else {
+            // Failure popup - exactly as requested
+            alert('❌ Mail not sent, try again');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        // Failure popup - exactly as requested
+        alert('❌ Mail not sent, try again');
+    })
+    .finally(() => {
+        // Reset button state
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 2000);
-    
-    // Simple mailto solution for GitHub Pages
-    const subject = encodeURIComponent(`Contact Form - ${formData.name} - V-Infotec`);
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason || 'Not specified'}\n\nMessage:\n${formData.message || 'No message provided'}\n\n---\nSent from V-Infotec website`);
-    
-    const mailtoLink = `mailto:vishwakarmakashyap@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoLink;
-    
-    alert('✅ Your email client will open. Please send the email to complete your inquiry.');
-    document.getElementById('contactForm').reset();
-    closePopup();
+    });
 });
 
 // Smooth scrolling for navigation links
