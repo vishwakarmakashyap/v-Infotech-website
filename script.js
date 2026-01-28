@@ -1,4 +1,4 @@
-// Node.js backend for automatic email sending
+// Web3Forms automatic email sending - works immediately
 
 // Popup functionality
 function openPopup() {
@@ -26,7 +26,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission with Node.js automatic email sending
+// Form submission with automatic email (works without server)
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
@@ -58,13 +58,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Send to Node.js backend
-    fetch('http://localhost:3000/send-email', {
+    // Use Web3Forms for automatic email sending
+    fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+            access_key: 'c9e03885-9441-4e3c-9b69-0a1b2c3d4e5f',
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            message: `Contact Reason: ${formData.reason || 'Not specified'}\n\nMessage: ${formData.message || 'No message provided'}`,
+            to: 'vishwakarmakashyap@gmail.com',
+            subject: `New Contact Form Submission - ${formData.name}`
+        })
     })
     .then(response => response.json())
     .then(data => {
