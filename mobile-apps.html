@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile App Development - V-Infotec Pvt Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>V-Infotec Pvt Ltd</h2>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <button class="contact-btn" onclick="openPopup()">Contact Us</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="qa-hero">
+        <div class="hero-content">
+            <h1>Mobile App Development</h1>
+            <p>Native and cross-platform mobile applications for iOS and Android with exceptional user experience</p>
+        </div>
+    </section>
+
+    <section class="qa-services">
+        <div class="container">
+            <h2>Mobile Development Services</h2>
+            <div class="qa-grid">
+                <div class="qa-card">
+                    <i class="fab fa-apple"></i>
+                    <h3>iOS Development</h3>
+                    <p>Native iOS applications built with Swift and Objective-C.</p>
+                    <ul>
+                        <li>Swift & Objective-C</li>
+                        <li>Xcode development</li>
+                        <li>App Store optimization</li>
+                        <li>iOS design guidelines</li>
+                        <li>Core Data integration</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fab fa-android"></i>
+                    <h3>Android Development</h3>
+                    <p>High-performance Android apps using Kotlin and Java.</p>
+                    <ul>
+                        <li>Kotlin & Java</li>
+                        <li>Android Studio</li>
+                        <li>Google Play Store</li>
+                        <li>Material Design</li>
+                        <li>Room database</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-mobile"></i>
+                    <h3>Cross-Platform</h3>
+                    <p>Single codebase apps for both iOS and Android platforms.</p>
+                    <ul>
+                        <li>React Native</li>
+                        <li>Flutter development</li>
+                        <li>Xamarin solutions</li>
+                        <li>Code reusability</li>
+                        <li>Faster time-to-market</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Backend Integration</h3>
+                    <p>Seamless integration with cloud services and APIs.</p>
+                    <ul>
+                        <li>RESTful API integration</li>
+                        <li>Firebase services</li>
+                        <li>Push notifications</li>
+                        <li>Real-time sync</li>
+                        <li>Cloud storage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testing-process">
+        <div class="container">
+            <h2>App Development Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Strategy & Planning</h3>
+                    <p>Market research and app strategy development</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design and prototyping</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Agile development with regular testing</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Testing & QA</h3>
+                    <p>Comprehensive testing on multiple devices</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>App Store Launch</h3>
+                    <p>Store submission and post-launch support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="qa-cta">
+        <div class="container">
+            <h2>Ready to Launch Your Mobile App?</h2>
+            <p>Transform your idea into a successful mobile application</p>
+            <button class="btn-primary" onclick="openPopup()">Get Mobile App Quote</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>V-Infotec Pvt Ltd</h3>
+                    <p>Transforming Ideas into Digital Solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@vinfotec.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Satna, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 V-Infotec Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="clientName">Client Name *</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number *</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactReason">Contact Reason</label>
+                    <select id="contactReason" name="contactReason">
+                        <option value="">Select a reason</option>
+                        <option value="ios-app">iOS App</option>
+                        <option value="android-app">Android App</option>
+                        <option value="cross-platform">Cross-Platform</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your mobile app idea..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

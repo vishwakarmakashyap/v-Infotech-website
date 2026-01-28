@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications - V-Infotec Pvt Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>V-Infotec Pvt Ltd</h2>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <button class="contact-btn" onclick="openPopup()">Contact Us</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="qa-hero">
+        <div class="hero-content">
+            <h1>Web Application Development</h1>
+            <p>Modern, responsive web applications built with cutting-edge technologies for optimal performance</p>
+        </div>
+    </section>
+
+    <section class="qa-services">
+        <div class="container">
+            <h2>Web Development Services</h2>
+            <div class="qa-grid">
+                <div class="qa-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Frontend Development</h3>
+                    <p>Interactive and responsive user interfaces using modern frameworks.</p>
+                    <ul>
+                        <li>React.js & Angular</li>
+                        <li>Vue.js development</li>
+                        <li>Responsive design</li>
+                        <li>Progressive Web Apps</li>
+                        <li>Cross-browser compatibility</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-server"></i>
+                    <h3>Backend Development</h3>
+                    <p>Robust server-side solutions with scalable architecture.</p>
+                    <ul>
+                        <li>Node.js & Express</li>
+                        <li>Python Django/Flask</li>
+                        <li>Java Spring Boot</li>
+                        <li>RESTful APIs</li>
+                        <li>Database optimization</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <h3>E-commerce Solutions</h3>
+                    <p>Complete online store development with payment integration.</p>
+                    <ul>
+                        <li>Custom e-commerce platforms</li>
+                        <li>Payment gateway integration</li>
+                        <li>Inventory management</li>
+                        <li>Order tracking systems</li>
+                        <li>Multi-vendor support</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-users"></i>
+                    <h3>CMS Development</h3>
+                    <p>Content management systems for easy website administration.</p>
+                    <ul>
+                        <li>Custom CMS solutions</li>
+                        <li>WordPress development</li>
+                        <li>User role management</li>
+                        <li>SEO optimization</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testing-tools">
+        <div class="container">
+            <h2>Technologies We Use</h2>
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h3>Frontend</h3>
+                    <div class="tools">
+                        <span>React</span>
+                        <span>Angular</span>
+                        <span>Vue.js</span>
+                        <span>TypeScript</span>
+                        <span>Sass/SCSS</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Backend</h3>
+                    <div class="tools">
+                        <span>Node.js</span>
+                        <span>Python</span>
+                        <span>Java</span>
+                        <span>PHP</span>
+                        <span>C#</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Databases</h3>
+                    <div class="tools">
+                        <span>MySQL</span>
+                        <span>PostgreSQL</span>
+                        <span>MongoDB</span>
+                        <span>Redis</span>
+                        <span>Firebase</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="tools">
+                        <span>AWS</span>
+                        <span>Azure</span>
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>CI/CD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="qa-cta">
+        <div class="container">
+            <h2>Ready to Build Your Web Application?</h2>
+            <p>Let's create a powerful web solution that drives your business forward</p>
+            <button class="btn-primary" onclick="openPopup()">Get Web Development Quote</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>V-Infotec Pvt Ltd</h3>
+                    <p>Transforming Ideas into Digital Solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@vinfotec.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Satna, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 V-Infotec Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="clientName">Client Name *</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number *</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactReason">Contact Reason</label>
+                    <select id="contactReason" name="contactReason">
+                        <option value="">Select a reason</option>
+                        <option value="web-application">Web Application</option>
+                        <option value="ecommerce">E-commerce</option>
+                        <option value="cms">CMS Development</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your web application requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

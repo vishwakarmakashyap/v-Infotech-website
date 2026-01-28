@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Development - V-Infotec Pvt Ltd</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h2>V-Infotec Pvt Ltd</h2>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <button class="contact-btn" onclick="openPopup()">Contact Us</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="qa-hero">
+        <div class="hero-content">
+            <h1>API Development Services</h1>
+            <p>Robust and scalable API solutions for seamless system integrations and data exchange</p>
+        </div>
+    </section>
+
+    <section class="qa-services">
+        <div class="container">
+            <h2>API Development Expertise</h2>
+            <div class="qa-grid">
+                <div class="qa-card">
+                    <i class="fas fa-exchange-alt"></i>
+                    <h3>RESTful APIs</h3>
+                    <p>Modern REST API development following industry best practices.</p>
+                    <ul>
+                        <li>RESTful architecture</li>
+                        <li>JSON data format</li>
+                        <li>HTTP status codes</li>
+                        <li>Resource-based URLs</li>
+                        <li>Stateless operations</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>GraphQL APIs</h3>
+                    <p>Flexible GraphQL APIs for efficient data fetching.</p>
+                    <ul>
+                        <li>Single endpoint</li>
+                        <li>Query optimization</li>
+                        <li>Real-time subscriptions</li>
+                        <li>Type-safe schema</li>
+                        <li>Introspection support</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>API Security</h3>
+                    <p>Comprehensive security implementation for API protection.</p>
+                    <ul>
+                        <li>OAuth 2.0 & JWT</li>
+                        <li>API key management</li>
+                        <li>Rate limiting</li>
+                        <li>HTTPS encryption</li>
+                        <li>Input validation</li>
+                    </ul>
+                </div>
+
+                <div class="qa-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>API Documentation</h3>
+                    <p>Comprehensive documentation for easy API integration.</p>
+                    <ul>
+                        <li>OpenAPI/Swagger</li>
+                        <li>Interactive documentation</li>
+                        <li>Code examples</li>
+                        <li>SDK generation</li>
+                        <li>Postman collections</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testing-tools">
+        <div class="container">
+            <h2>API Technologies</h2>
+            <div class="tools-grid">
+                <div class="tool-category">
+                    <h3>Frameworks</h3>
+                    <div class="tools">
+                        <span>Express.js</span>
+                        <span>FastAPI</span>
+                        <span>Spring Boot</span>
+                        <span>Django REST</span>
+                        <span>ASP.NET Core</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Documentation</h3>
+                    <div class="tools">
+                        <span>Swagger</span>
+                        <span>Postman</span>
+                        <span>Insomnia</span>
+                        <span>OpenAPI</span>
+                        <span>Redoc</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Testing</h3>
+                    <div class="tools">
+                        <span>Jest</span>
+                        <span>Mocha</span>
+                        <span>PyTest</span>
+                        <span>JUnit</span>
+                        <span>Newman</span>
+                    </div>
+                </div>
+                <div class="tool-category">
+                    <h3>Deployment</h3>
+                    <div class="tools">
+                        <span>Docker</span>
+                        <span>Kubernetes</span>
+                        <span>AWS Lambda</span>
+                        <span>Azure Functions</span>
+                        <span>Google Cloud</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="qa-cta">
+        <div class="container">
+            <h2>Need Robust API Solutions?</h2>
+            <p>Let's build scalable APIs that power your applications and integrations</p>
+            <button class="btn-primary" onclick="openPopup()">Get API Development Quote</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>V-Infotec Pvt Ltd</h3>
+                    <p>Transforming Ideas into Digital Solutions</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@vinfotec.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Satna, India</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 V-Infotec Pvt Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="clientName">Client Name *</label>
+                    <input type="text" id="clientName" name="clientName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number *</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" required>
+                </div>
+                <div class="form-group">
+                    <label for="contactReason">Contact Reason</label>
+                    <select id="contactReason" name="contactReason">
+                        <option value="">Select a reason</option>
+                        <option value="rest-api">REST API</option>
+                        <option value="graphql-api">GraphQL API</option>
+                        <option value="api-integration">API Integration</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your API requirements..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
