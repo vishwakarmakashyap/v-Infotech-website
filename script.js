@@ -1,5 +1,8 @@
 // Contact form with API integration
 
+// Initialize EmailJS
+emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+
 // Popup functionality
 function openPopup() {
     document.getElementById('contactModal').style.display = 'block';
@@ -58,25 +61,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Send to API
-    fetch('http://localhost:3000/send-contact-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+    // Use EmailJS for production (GitHub Pages compatible)
+    emailjs.send('service_vinfotec', 'template_contact', {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        reason: formData.reason,
+        message: formData.message,
+        to_email: 'vishwakarmakashyap@gmail.com'
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('✅ Email sent successfully! We will contact you soon.');
-            document.getElementById('contactForm').reset();
-            closePopup();
-        } else {
-            alert('❌ Mail not sent, try again');
-        }
+    .then(() => {
+        alert('✅ Email sent successfully! We will contact you soon.');
+        document.getElementById('contactForm').reset();
+        closePopup();
     })
-    .catch(error => {
+    .catch((error) => {
         console.error('Error:', error);
         alert('❌ Mail not sent, try again');
     })
