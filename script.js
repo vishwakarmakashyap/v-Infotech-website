@@ -59,7 +59,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     
     // Send to API
-    fetch('http://localhost:3001/send-contact-email', {
+    fetch('http://localhost:3000/send-contact-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
