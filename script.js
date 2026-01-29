@@ -1,4 +1,4 @@
-// Simple contact form with basic email functionality
+// Contact form with API integration
 
 // Popup functionality
 function openPopup() {
@@ -26,32 +26,64 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Form submission
+// Form submission with API integration
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Get form data
-    const name = document.getElementById('clientName').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('contactNumber').value;
+    const formData = {
+        name: document.getElementById('clientName').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('contactNumber').value,
+        reason: document.getElementById('contactReason').value,
+        message: document.getElementById('message').value
+    };
     
     // Basic validation
-    if (!name || !email || !phone) {
+    if (!formData.name || !formData.email || !formData.phone) {
         alert('Please fill in all required fields.');
         return;
     }
     
     // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(formData.email)) {
         alert('Please enter a valid email address.');
         return;
     }
     
-    // Show success message
-    alert('✅ Email sent successfully! We will contact you soon.');
-    document.getElementById('contactForm').reset();
-    closePopup();
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    
+    // Send to API
+    fetch('http://localhost:3000/send-contact-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Email sent successfully! We will contact you soon.');
+            document.getElementById('contactForm').reset();
+            closePopup();
+        } else {
+            alert('❌ Mail not sent, try again');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Mail not sent, try again');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
 });
 
 // Smooth scrolling for navigation links
