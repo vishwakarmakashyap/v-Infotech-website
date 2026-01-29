@@ -118,7 +118,7 @@ app.get('/', (req, res) => {
     `);
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`🚀 V-Infotec Email Server running on port ${PORT}`);
     console.log(`📧 SMTP configured for: vishwakarmakashyap@gmail.com`);
