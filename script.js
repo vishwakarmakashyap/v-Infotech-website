@@ -65,10 +65,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     emailjs.send('service_vinfotec', 'template_contact', {
         from_name: formData.name,
         from_email: formData.email,
-        phone: formData.phone,
-        reason: formData.reason,
-        message: formData.message,
-        to_email: 'vishwakarmakashyap@gmail.com'
+        message: `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason}\nMessage: ${formData.message}`
     })
     .then(() => {
         alert('✅ Email sent successfully! We will contact you soon.');
