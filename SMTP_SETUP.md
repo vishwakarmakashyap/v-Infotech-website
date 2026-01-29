@@ -72,7 +72,7 @@ npm start
 ### Production Environment:
 ```bash
 # Set environment variables
-GMAIL_APP_PASSWORD=Kashyap@361997
+GMAIL_APP_PASSWORD=your-password
 PORT=3000
 ```
 
