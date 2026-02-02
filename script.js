@@ -65,7 +65,9 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     emailjs.send('service_5my56hc', 'template_contact', {
         from_name: formData.name,
         from_email: formData.email,
-        message: `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason}\nMessage: ${formData.message}`
+        phone: formData.phone,
+        reason: formData.reason,
+        message: formData.message
     })
     .then(() => {
         alert('✅ Email sent successfully! We will contact you soon.');
