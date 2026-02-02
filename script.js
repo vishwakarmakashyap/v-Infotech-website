@@ -1,6 +1,7 @@
-// Contact form with Nodemailer backend integration
+// Contact form with EmailJS for GitHub Pages
 
-// Remove EmailJS initialization
+// Initialize EmailJS
+emailjs.init('fN8U8oXKFARIRH25z');
 
 // Popup functionality
 function openPopup() {
@@ -60,32 +61,12 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Send to Nodemailer backend
-    fetch('/contact', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
+    // Use EmailJS for GitHub Pages
+    emailjs.send('service_5my56hc', 'template_1', {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${formData.reason}\nMessage: ${formData.message}`
     })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert('✅ Email sent successfully! We will contact you soon.');
-            document.getElementById('contactForm').reset();
-            closePopup();
-        } else {
-            alert('❌ Mail not sent, try again');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('❌ Mail not sent, try again');
-    })
-    .finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-    });
 });
 
 // Smooth scrolling for navigation links
