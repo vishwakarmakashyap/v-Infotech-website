@@ -60,8 +60,8 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Call deployed backend API
-    fetch('https://v-infotec-backend.up.railway.app/contact', {
+    // Call same domain API (relative URL)
+    fetch('/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
