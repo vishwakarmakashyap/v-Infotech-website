@@ -1,7 +1,7 @@
 {
-  "name": "v-infotec-smtp-server",
+  "name": "v-infotec-backend",
   "version": "1.0.0",
-  "description": "SMTP Email server for V-Infotec contact form using Nodemailer",
+  "description": "V-Infotec Backend - Email API Server",
   "main": "smtp-server.js",
   "scripts": {
     "start": "node smtp-server.js",
