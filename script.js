@@ -1,7 +1,6 @@
-// Contact form with EmailJS integration for GitHub Pages
+// Contact form with Nodemailer backend integration
 
-// Initialize EmailJS
-emailjs.init('fN8U8oXKFARIRH25z');
+// Remove EmailJS initialization
 
 // Popup functionality
 function openPopup() {
@@ -37,7 +36,9 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     const formData = {
         name: document.getElementById('clientName').value,
         email: document.getElementById('email').value,
-        phone: document.getElementById('contactNumber').value
+        phone: document.getElementById('contactNumber').value,
+        reason: document.getElementById('contactReason').value,
+        message: document.getElementById('message').value
     };
     
     // Basic validation
@@ -59,18 +60,25 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Use EmailJS for GitHub Pages
-    emailjs.send('service_5my56hc', 'template_1', {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${document.getElementById('contactReason').value}\nMessage: ${document.getElementById('message').value}`
+    // Send to Nodemailer backend
+    fetch('/contact', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
     })
-    .then(() => {
-        alert('✅ Email sent successfully! We will contact you soon.');
-        document.getElementById('contactForm').reset();
-        closePopup();
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('✅ Email sent successfully! We will contact you soon.');
+            document.getElementById('contactForm').reset();
+            closePopup();
+        } else {
+            alert('❌ Mail not sent, try again');
+        }
     })
-    .catch((error) => {
+    .catch(error => {
         console.error('Error:', error);
         alert('❌ Mail not sent, try again');
     })
