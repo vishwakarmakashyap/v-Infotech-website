@@ -60,7 +60,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     
     // Use EmailJS for GitHub Pages
-    emailjs.sendForm('service_5my56hc', 'template_contact', '#contactForm')
+    emailjs.send('service_5my56hc', 'template_1', {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nReason: ${document.getElementById('contactReason').value}\nMessage: ${document.getElementById('message').value}`
+    })
     .then(() => {
         alert('✅ Email sent successfully! We will contact you soon.');
         document.getElementById('contactForm').reset();
