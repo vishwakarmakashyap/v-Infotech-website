@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static('../')); // Serve frontend files
 
 // Email configuration
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
     secure: false,
@@ -32,7 +32,7 @@ app.post('/contact', async (req, res) => {
                 name: 'V-Infotec Website',
                 address: 'vishwakarmakashyap@gmail.com'
             },
-            to: 'vishwakarmakashyap@gmail.com',
+            to: 'mail111111@yopmail.com',
             subject: `New Contact Form Submission - ${name}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
