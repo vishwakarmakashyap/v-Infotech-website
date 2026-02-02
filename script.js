@@ -60,8 +60,8 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Call same domain API (relative URL)
-    fetch('/contact', {
+    // Call Render backend API
+    fetch('https://v-infotech-website.onrender.com/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
