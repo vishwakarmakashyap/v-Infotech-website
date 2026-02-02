@@ -37,9 +37,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     const formData = {
         name: document.getElementById('clientName').value,
         email: document.getElementById('email').value,
-        phone: document.getElementById('contactNumber').value,
-        reason: document.getElementById('contactReason').value,
-        message: document.getElementById('message').value
+        phone: document.getElementById('contactNumber').value
     };
     
     // Basic validation
@@ -62,13 +60,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.disabled = true;
     
     // Use EmailJS for GitHub Pages
-    emailjs.send('service_5my56hc', 'template_contact', {
-        from_name: formData.name,
-        from_email: formData.email,
-        phone: formData.phone,
-        reason: formData.reason,
-        message: formData.message
-    })
+    emailjs.sendForm('service_5my56hc', 'template_contact', '#contactForm')
     .then(() => {
         alert('✅ Email sent successfully! We will contact you soon.');
         document.getElementById('contactForm').reset();
