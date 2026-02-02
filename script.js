@@ -60,13 +60,17 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
-    // Call Render backend API
+    // Call Render backend API with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+    
     fetch('https://v-infotech-website.onrender.com/contact', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        signal: controller.signal
     })
     .then(response => response.json())
     .then(data => {
@@ -80,9 +84,14 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('❌ Mail not sent, try again');
+        if (error.name === 'AbortError') {
+            alert('⏰ Request timeout - Server is waking up, please try again');
+        } else {
+            alert('❌ Mail not sent, try again');
+        }
     })
     .finally(() => {
+        clearTimeout(timeoutId);
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     });
