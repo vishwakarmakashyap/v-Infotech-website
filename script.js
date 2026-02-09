@@ -125,5 +125,5 @@ window.addEventListener('scroll', function() {
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('V-Infotec website loaded successfully!');
+    console.log('IgnaTech website loaded successfully!');
 });

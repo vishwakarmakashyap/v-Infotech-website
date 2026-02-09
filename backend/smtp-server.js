@@ -46,7 +46,7 @@ app.post('/send-contact-email', async (req, res) => {
         // Email options
         const mailOptions = {
             from: {
-                name: 'V-Infotec Website',
+                name: 'IgnaTech Website',
                 address: 'vishwakarmakashyap@gmail.com'
             },
             to: 'mail111111@yopmail.com',
@@ -73,7 +73,7 @@ app.post('/send-contact-email', async (req, res) => {
                     
                     <hr style="border: 1px solid #eee; margin: 30px 0;">
                     <p style="color: #666; font-size: 12px;">
-                        <em>This email was sent from the V-Infotec website contact form</em><br>
+                        <em>This email was sent from the IgnaTech website contact form</em><br>
                         <strong>Reply directly to this email to respond to the client</strong>
                     </p>
                 </div>
@@ -104,7 +104,7 @@ app.post('/send-contact-email', async (req, res) => {
 app.get('/health', (req, res) => {
     res.json({ 
         status: 'OK', 
-        message: 'V-Infotec Email Server is running',
+        message: 'IgnaTech Email Server is running',
         timestamp: new Date().toISOString()
     });
 });
@@ -112,7 +112,7 @@ app.get('/health', (req, res) => {
 // Serve static files
 app.get('/', (req, res) => {
     res.send(`
-        <h1>V-Infotec Email Server</h1>
+        <h1>IgnaTech Email Server</h1>
         <p>Server is running and ready to send emails!</p>
         <p>SMTP Status: Connected to Gmail</p>
     `);
@@ -120,6 +120,6 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`🚀 V-Infotec Email Server running on port ${PORT}`);
+    console.log(`🚀 IgnaTech Email Server running on port ${PORT}`);
     console.log(`📧 SMTP configured for: vishwakarmakashyap@gmail.com`);
 });
